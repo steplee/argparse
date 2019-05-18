@@ -152,6 +152,16 @@ class ArgumentParser {
     return t;
   }
 
+  template <typename T>
+  T getd(const std::string &name, const T def) {
+    auto got = get<std::string>(name);
+    if (got == "") return def;
+    std::istringstream in(got);
+    T t;
+    in >> t >> std::ws;
+    return t;
+  }
+
  private:
   friend class ArgumentNotFound;
   struct Argument {
@@ -274,4 +284,15 @@ inline std::vector<std::string> ArgumentParser::getv<std::string>(
   }
   return std::vector<std::string>();
 }
+
+
+
+
+
+
+
+
+
+
+
 #endif
