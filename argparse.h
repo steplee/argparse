@@ -263,9 +263,9 @@ inline std::string ArgumentParser::get<std::string>(const std::string &name) {
   if (_pairs.find(t) != _pairs.end()) t = _pairs[t];
   auto v = _variables.find(t);
   if (v != _variables.end()) {
-    return std::accumulate(
+    return _trim_copy(std::accumulate(
         v->second.begin(), v->second.end(), std::string(),
-        [](std::string a, std::string b) { return a + " " + b; });
+        [](std::string a, std::string b) { return a + " " + b; }));
   }
   return "";
 }
